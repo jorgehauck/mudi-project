@@ -22,7 +22,7 @@ public class HomeController {
 
 	@GetMapping("/home")
 	public String home(Model model) {
-		List<Pedido> pedidos = pedidoRepository.findPedidos();
+		List<Pedido> pedidos = pedidoRepository.findAll();
 		model.addAttribute("pedidos", pedidos);
 		return "home";
 	}
