@@ -1,10 +1,12 @@
 package br.com.alura.mvc.mudi.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.com.alura.mvc.mudi.dto.PedidoDTO;
@@ -19,13 +21,16 @@ public class PedidoController {
 	private PedidoRepository pedidoRepository;
 
 	@GetMapping("formulario")
-	public String formulario() {
+	public String formulario(PedidoDTO pedidoDTO) {
 		return "pedido/formulario";
 	}
 	
 	@PostMapping("novo")
-	public String novo(PedidoDTO pedidoDTO) {
+	public String novo(@Valid PedidoDTO pedidoDTO, BindingResult result) {
 		
+		if(result.hasErrors()) {
+			return "pedido/formulario";
+		}
 		Pedido pedido = new Pedido();
 		pedido.setNomeProduto(pedidoDTO.getNomeProduto());
 		pedido.setUrlProduto(pedidoDTO.getUrlProduto());

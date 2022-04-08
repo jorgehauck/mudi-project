@@ -1,12 +1,18 @@
 package br.com.alura.mvc.mudi.dto;
 
+import javax.validation.constraints.NotBlank;
+
 import br.com.alura.mvc.mudi.model.Pedido;
 
 public class PedidoDTO {
 
+	@NotBlank(message = "Campo nome do produto obrigatório")
 	private String nomeProduto;
+	@NotBlank(message = "Campo url do produto obrigatório!")
 	private String urlProduto;
+	@NotBlank(message = "Campo url da imagem obrigatório!")
 	private String urlImagem;
+	
 	private String descricao;
 	
 	public PedidoDTO() {
@@ -20,12 +26,6 @@ public class PedidoDTO {
 		this.descricao = descricao;
 	}
 	
-	public PedidoDTO(Pedido pedido) {
-		this.nomeProduto = pedido.getNomeProduto();
-		this.urlProduto = pedido.getUrlProduto();
-		this.urlImagem = pedido.getUrlImagem();
-		this.descricao = pedido.getDescricao();
-	}
 
 	public String getNomeProduto() {
 		return nomeProduto;
