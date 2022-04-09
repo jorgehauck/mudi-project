@@ -6,7 +6,7 @@ import br.com.alura.mvc.mudi.model.Pedido;
 
 public class PedidoDTO {
 
-	@NotBlank(message = "Campo nome do produto obrigatório")
+	@NotBlank(message = "Campo nome do produto obrigatório!")
 	private String nomeProduto;
 	@NotBlank(message = "Campo url do produto obrigatório!")
 	private String urlProduto;
