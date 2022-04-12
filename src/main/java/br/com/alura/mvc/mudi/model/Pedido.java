@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -23,18 +25,20 @@ public class Pedido {
 	private String urlImagem;
 	private String descricao;
 	
-	public Pedido() {
-		
-	}
+	@Enumerated(EnumType.STRING)
+	private StatusPedido statusPedido;
+	
+	public Pedido() {}
 	
 	public Pedido(String nomeProduto, BigDecimal valorNegociado, LocalDate dataDaEntrega, String urlProduto,
-			String urlImagem, String descricao) {
+			String urlImagem, String descricao, StatusPedido statusPedido) {
 		this.nomeProduto = nomeProduto;
 		this.valorNegociado = valorNegociado;
 		this.dataDaEntrega = dataDaEntrega;
 		this.urlProduto = urlProduto;
 		this.urlImagem = urlImagem;
 		this.descricao = descricao;
+		this.statusPedido = statusPedido;
 	}
 
 	public Long getId() {
@@ -76,5 +80,13 @@ public class Pedido {
 	}
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
+	}
+
+	public StatusPedido getStatusPedido() {
+		return statusPedido;
+	}
+
+	public void setStatusPedido(StatusPedido statusPedido) {
+		this.statusPedido = statusPedido;
 	}
 }

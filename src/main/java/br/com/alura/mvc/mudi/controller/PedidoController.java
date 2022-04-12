@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.com.alura.mvc.mudi.dto.PedidoDTO;
 import br.com.alura.mvc.mudi.model.Pedido;
+import br.com.alura.mvc.mudi.model.StatusPedido;
 import br.com.alura.mvc.mudi.repositories.PedidoRepository;
 
 @Controller
@@ -19,7 +20,7 @@ public class PedidoController {
 	
 	@Autowired
 	private PedidoRepository pedidoRepository;
-
+	
 	@GetMapping("formulario")
 	public String formulario(PedidoDTO pedidoDTO) {
 		return "pedido/formulario";
@@ -31,13 +32,15 @@ public class PedidoController {
 		if(result.hasErrors()) {
 			return "pedido/formulario";
 		}
+		
 		Pedido pedido = new Pedido();
 		pedido.setNomeProduto(pedidoDTO.getNomeProduto());
 		pedido.setUrlProduto(pedidoDTO.getUrlProduto());
 		pedido.setUrlImagem(pedidoDTO.getUrlImagem());
 		pedido.setDescricao(pedidoDTO.getDescricao());
+		pedido.setStatusPedido(StatusPedido.AGUARDANDO);
 		
 		pedidoRepository.save(pedido);
-		return "pedido/formulario";
+		return "redirect:/home";
 	}
 }

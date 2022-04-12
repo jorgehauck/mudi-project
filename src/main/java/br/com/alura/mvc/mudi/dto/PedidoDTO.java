@@ -2,8 +2,6 @@ package br.com.alura.mvc.mudi.dto;
 
 import javax.validation.constraints.NotBlank;
 
-import br.com.alura.mvc.mudi.model.Pedido;
-
 public class PedidoDTO {
 
 	@NotBlank(message = "Campo nome do produto obrigatório!")
@@ -57,10 +55,5 @@ public class PedidoDTO {
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
-	}
-
-	public Pedido toPedido() {
-		
-		return null;
 	}
 }
