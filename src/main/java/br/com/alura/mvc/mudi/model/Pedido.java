@@ -31,14 +31,13 @@ public class Pedido {
 	public Pedido() {}
 	
 	public Pedido(String nomeProduto, BigDecimal valorNegociado, LocalDate dataDaEntrega, String urlProduto,
-			String urlImagem, String descricao, StatusPedido statusPedido) {
+			String urlImagem, String descricao) {
 		this.nomeProduto = nomeProduto;
 		this.valorNegociado = valorNegociado;
 		this.dataDaEntrega = dataDaEntrega;
 		this.urlProduto = urlProduto;
 		this.urlImagem = urlImagem;
 		this.descricao = descricao;
-		this.statusPedido = statusPedido;
 	}
 
 	public Long getId() {
