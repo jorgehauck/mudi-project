@@ -38,7 +38,7 @@ public class PedidoController {
 		pedido.setUrlProduto(pedidoDTO.getUrlProduto());
 		pedido.setUrlImagem(pedidoDTO.getUrlImagem());
 		pedido.setDescricao(pedidoDTO.getDescricao());
-		pedido.setStatus(StatusPedido.ENTREGUE);
+		pedido.setStatus(StatusPedido.APROVADO);
 		
 		pedidoRepository.save(pedido);
 		return "redirect:/home";
