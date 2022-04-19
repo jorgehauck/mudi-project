@@ -36,7 +36,7 @@
 			<h1 class="display-4">Novo Pedido</h1>
 		</div>
 		<div class="card mt-3">
-			<form th:object="${pedidoDTO}" class="card-body" action="/pedido/novo" method="POST">
+			<form th:object="${pedidoDTO}" class="card-body" th:action="@{/pedido/novo}" method="POST">
 				<div class="form-group">
 					<label for="nomeProduto">Produto</label>
 					<input th:field="*{nomeProduto}" th:errorClass="is-invalid" class="form-control"
