@@ -15,9 +15,12 @@ public interface PedidoRepository extends JpaRepository<Pedido, Long> {
 
 	
 	List<Pedido> findByStatus(StatusPedido statusPedido);
-    // Annotation @Param filtro para buscar de dados pelo parâmetro informado.
+    // Annotation @Param filtro para busca de dados pelo parâmetro informado.
 	
 	@Query("SELECT p from Pedido p JOIN p.user u where u.username = :username")
 	List<Pedido> findByUserOrder(@Param("username") String username);
+
+	@Query("SELECT p from Pedido p JOIN p.user u where u.username = :username AND p.status = :status")
+	List<Pedido> findByStatusByUser(@Param("username") String username, @Param("status") StatusPedido status);
 	
 }
