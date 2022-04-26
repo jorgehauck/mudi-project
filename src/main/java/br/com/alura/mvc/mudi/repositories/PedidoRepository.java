@@ -2,6 +2,7 @@ package br.com.alura.mvc.mudi.repositories;
 
 import java.util.List;
 
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -15,6 +16,7 @@ import br.com.alura.mvc.mudi.model.StatusPedido;
 public interface PedidoRepository extends JpaRepository<Pedido, Long> {
 
 	
+	@Cacheable("orders")
 	List<Pedido> findByStatus(StatusPedido statusPedido, Pageable pageable);
     // Annotation @Param filtro para busca de dados pelo parâmetro informado.
 	
