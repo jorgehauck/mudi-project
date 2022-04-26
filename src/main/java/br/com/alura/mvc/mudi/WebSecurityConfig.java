@@ -21,15 +21,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 		.authorizeRequests()
-			.anyRequest().authenticated()
+		.antMatchers("/home/**")
+		.permitAll()
+		.anyRequest().authenticated()
 		.and()
 		.formLogin(form -> form
             .loginPage("/login") // Permissão de visualização de página sem autenticação.
             .defaultSuccessUrl("/usuario/pedido", true)
             .permitAll()
         )
-		.logout(logout -> logout.logoutUrl("/logout"))
-		.csrf().disable();
+		.logout(logout -> logout.logoutUrl("/logout")
+				.logoutSuccessUrl("/home")
+				
+		);
 	}
 	
 	@Override
