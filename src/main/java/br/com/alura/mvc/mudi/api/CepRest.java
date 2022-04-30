@@ -11,7 +11,7 @@ import br.com.alura.mvc.mudi.service.EnderecoService;
 
 @RestController
 @RequestMapping(path = "api/cep")
-public class CepController {
+public class CepRest {
 	
 	@Autowired
 	private CepService cepService;
