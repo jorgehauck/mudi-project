@@ -40,24 +40,25 @@
 	<div class="container col-md-6">
 
 
-		<div class="form-group mb-3" id="cepService">
+		<div class="form-group mb-3">
 			<label for="viacep">Cálculo de Frete e Prazos</label>
-			<input onblur="onBlur()" v-model="cep" type="text" class="form-control" placeholder="Informe o seu CEP">
+			<input id="cepService" onblur="getAddress()" type="text" class="form-control"
+				placeholder="Informe o seu CEP">
 		</div>
 
 		<div class="form-group mb-3">
 			<label for="logradouro">Logradoudro</label>
-			<input v-model="logradouro" type="text" class="form-control">
+			<input id="logradouro" type="text" class="form-control" disabled="disabled">
 		</div>
 
 		<div class="form-group mb-3">
 			<label for="bairro">Bairro</label>
-			<input v-model="bairro" type="text" class="form-control">
+			<input id="bairro" type="text" class="form-control" disabled="disabled">
 		</div>
 
 		<div class="form-group mb-3">
 			<label for="uf">UF</label>
-			<input v-model="uf" type="text" class="form-control">
+			<input id="uf" type="text" class="form-control" disabled="disabled">
 		</div>
 	</div>
 
@@ -65,28 +66,18 @@
 	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 	<script>
-
-		function onBlur() {
-			new Vue({
-				el: '#cepService',
-				data() {
-					return {
-						cep: null,
-						logradouro: null,
-						bairro: null,
-						uf: null
-					}
-				},
-				mounted() {
-					axios
-					.get(`http://localhost:8080/api/cep/`) // parâmetro do cep que o usuário digitar
-					.then(response => console.log(response))
-				}
+		function getAddress() {
+			
+			const cep = document.getElementById('cepService').value
+			
+			axios.get(`http://localhost:8080/api/cep/${cep}`)
+			.then(response => {
+				const data = response.data.logradouro
+				logradouro.textContent = data
+				
 			});
 		}
-
 	</script>
-
 </body>
 
 </html>
