@@ -22,15 +22,17 @@ public class OfertasRest {
 	@PostMapping
 	public Ofertas criaOferta(OfertasDTO ofertasDTO) {
 		
-		Optional<Pedido> pedido = pedidoRepository.findById(ofertasDTO.getPedidoId());
+		Optional<Pedido> pedidoBuscado = pedidoRepository.findById(ofertasDTO.getPedidoId());
 		
-		if(!pedido.isPresent()) {
+		if(!pedidoBuscado.isPresent()) {
 			return null;
 		}
 		
+		Pedido pedido = pedidoBuscado.get();
 		Ofertas nova = ofertasDTO.toOfertas();
-		
+		nova.setPedido(pedido);
+		pedido.getOfertas().add(nova);
+		pedidoRepository.save(pedido);
 		return nova;
-		
 	}
 }
