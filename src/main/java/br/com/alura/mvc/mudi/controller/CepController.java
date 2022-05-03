@@ -10,6 +10,6 @@ public class CepController {
 
 	@GetMapping
 	public String getCep() {
-		return "fretes/entrega";
+		return "fretes/calculoFrete";
 	}
 }

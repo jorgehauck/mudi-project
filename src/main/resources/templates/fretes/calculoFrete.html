@@ -34,13 +34,16 @@
 			<nav class="nav">
 				<a class="nav-link active" aria-current="page" th:href="@{/home}">Home</a>
 				<a class="nav-link" th:href="@{/usuario/pedido}">Meus Pedidos</a>
+				<a class="nav-link" th:href="@{/oferta}">Faça a sua Oferta</a>
+				<a class="nav-link" th:href="@{/cep}">Cálculo de Frete</a>
 			</nav>
 		</div>
 	</div>
-	<div class="container col-md-6">
-
-
-		<div class="form-group mb-3">
+	
+	<div class="row">
+		<div class="container col-md-6 col-sm-4">
+		
+			<div class="form-group mb-3">
 			<label for="viacep">Cálculo de Frete e Prazos</label>
 			<input id="cepService" onblur="getAddress()" type="text" class="form-control"
 				placeholder="Informe o seu CEP">
@@ -60,22 +63,31 @@
 			<label for="uf">UF</label>
 			<input id="uf" type="text" class="form-control" disabled="disabled">
 		</div>
-	</div>
 
+		<div class="form-group mb-3">
+			<label for="uf">Localidade</label>
+			<input id="localidade" type="text" class="form-control" disabled="disabled">
+		</div>
+		
+		
+		
+		</div>
+	</div>
 	<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
 	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 	<script>
 		function getAddress() {
-			
+
 			const cep = document.getElementById('cepService').value
-			
-			axios.get(`http://localhost:8080/api/cep/${cep}`)
-			.then(response => {
-				document.getElementById('logradouro').value = response.data.logradouro
-				document.getElementById('bairro').value = response.data.bairro
-				document.getElementById('uf').value = response.data.uf
-			});
+
+				axios.get(`http://localhost:8080/api/cep/${cep}`)
+				.then(response => {
+					document.getElementById('logradouro').value = response.data.logradouro
+					document.getElementById('bairro').value = response.data.bairro
+					document.getElementById('uf').value = response.data.uf
+					document.getElementById('localidade').value = response.data.localidade	
+		     });
 		}
 	</script>
 </body>

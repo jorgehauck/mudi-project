@@ -8,5 +8,5 @@ import org.springframework.web.bind.annotation.PathVariable;
 public interface CepService {
 
 	@GetMapping(path = "{cep}/json")
-	EnderecoService findByCep(@PathVariable("cep") String cep);
+	EnderecoService getByCep(@PathVariable("cep") String cep);
 }

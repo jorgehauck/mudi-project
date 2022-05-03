@@ -18,7 +18,7 @@ public class CepRest {
 
 	@GetMapping(path = "{cep}")
 	public EnderecoService buscaPorCep(@PathVariable("cep") String cep) {
-		EnderecoService service = cepService.findByCep(cep);
+		EnderecoService service = cepService.getByCep(cep);
 		return service;
 	}
 }
