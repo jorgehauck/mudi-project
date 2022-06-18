@@ -80,13 +80,15 @@
 		function getAddress() {
 
 			const cep = document.getElementById('cepService').value
-
+			
 				axios.get(`http://localhost:8080/api/cep/${cep}`)
 				.then(response => {
 					document.getElementById('logradouro').value = response.data.logradouro
 					document.getElementById('bairro').value = response.data.bairro
 					document.getElementById('uf').value = response.data.uf
-					document.getElementById('localidade').value = response.data.localidade	
+					document.getElementById('localidade').value = response.data.localidade
+					
+						
 		     });
 		}
 	</script>
