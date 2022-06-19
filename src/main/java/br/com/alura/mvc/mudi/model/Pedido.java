@@ -38,8 +38,8 @@ public class Pedido implements Serializable {
 	@Enumerated(EnumType.STRING)
 	private StatusPedido status;
 	
-	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
+	@JsonIgnore
 	private User user;
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "pedido", fetch = FetchType.LAZY)

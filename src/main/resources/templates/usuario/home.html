@@ -29,7 +29,7 @@
 		<form id="form-login" th:action="@{/logout}" method="post"></form>
 		</span>
 	</div>
-	<div class="row mb-2">
+	<div class="row mb-2" sec:authorize="isAuthenticated()">
 				<div class="col">
 				  <nav class="nav">
 					  <a class="nav-link active" aria-current="page" th:href="@{/home}">Home</a>

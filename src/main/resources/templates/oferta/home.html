@@ -30,7 +30,7 @@
 		</span>
 	</div>
 	<div class="row mb-2">
-		<div class="col">
+		<div class="col" sec:authorize="isAuthenticated()">
 			<nav class="nav">
 				<a class="nav-link active" aria-current="page" th:href="@{/home}">Home</a>
 				<a class="nav-link" th:href="@{/usuario/pedido}">Meus Pedidos</a>
@@ -61,7 +61,7 @@
 						</div>
 						<div class="row mt-3">
 							<div class="col-md-5">Valor: <input v-model="pedido.valorNegociado" class="form-control"/></div>
-							<div class="col-md-6">Data da entrega: <input v-model="pedido.dataDaEntrega"/ class="form-control"></div>
+							<div class="col-md-6">Data da entrega: <input v-model="pedido.dataDaEntrega" class="form-control"/></div>
 						</div>
 						<div class="mt-2">
 							<label>Comentário</label>
@@ -95,7 +95,14 @@
 				},
 				methods: {
 					enviarOferta: function(pedido) {
-						console.log(pedido);
+					axios
+						.post('http://localhost:8080/api/ofertas', {
+							pedidoId: pedido.id,
+							valor: pedido.valorNegociado,
+							dataDaEntrega: pedido.dataDaEntrega,
+							comentario: pedido.comentario
+						})
+						.then(response => console.log(response))
 					}
 				}
 			});

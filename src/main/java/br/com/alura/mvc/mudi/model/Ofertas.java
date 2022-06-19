@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "ofertas")
 public class Ofertas implements Serializable {
@@ -25,6 +27,7 @@ public class Ofertas implements Serializable {
 	private String comentario;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
+	@JsonIgnore
 	private Pedido pedido;
 	
 	public Ofertas() {
